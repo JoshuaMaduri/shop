@@ -3,6 +3,7 @@ import { SignOutButton } from "@clerk/nextjs";
 
 export default async function Page() {
     const user = await currentUser();
+
     return (
         <div>
             <h1>Welcome to the Dashboard</h1>
@@ -12,8 +13,13 @@ export default async function Page() {
                     <SignOutButton>
                         <button>Sign Out</button>
                     </SignOutButton>
+                    
+                    {Object.entries(user).map(([key, value]) => (
+                        <p key={key}>
+                            {key}: {String(value)}
+                        </p>
+                    ))}
                 </div>
-                
                 
 
             ) : (
